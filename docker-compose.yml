@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  db:
+    build: ./db
+    container_name: tienda-db
+    environment:
+      POSTGRES_USER: tienda_user
+      POSTGRES_PASSWORD: tienda_pass
+      POSTGRES_DB: tienda_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - tienda-network
+
+  backend:
+    build: ./backend
+    container_name: tienda-backend
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: tienda_user
+      DB_PASSWORD: tienda_pass
+      DB_NAME: tienda_db
+      DB_PORT: 5432
+      NODE_ENV: production
+    ports:
+      - "5000:5000"
+    networks:
+      - tienda-network
+
+  frontend:
+    build: ./frontend
+    container_name: tienda-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    environment:
+      BACKEND_URL: http://backend:5000
+    networks:
+      - tienda-network
+
+volumes:
+  db_data:
+
+networks:
+  tienda-network:
+    driver: bridge
