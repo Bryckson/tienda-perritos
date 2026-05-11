@@ -1,3 +1,4 @@
+-- v2 actualización automática CI/CD
 CREATE DATABASE IF NOT EXISTS tienda_perritos;
 USE tienda_perritos;
 
