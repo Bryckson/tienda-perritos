@@ -40,18 +40,11 @@ jobs:
           --comment "Actualizar tienda-frontend desde ECR" \
           --parameters '{"commands":[
             "set -e",
-<<<<<<< HEAD
-            "aws ecr get-login-password --region '${{ secrets.AWS_REGION }}' | docker login --username AWS --password-stdin ${{ secrets.ECR_REGISTRY }}",
-=======
             "aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REGISTRY }}",
->>>>>>> b93c108f2eb514edc5281b5c965d9d73fdc919a4
             "docker pull ${{ secrets.ECR_REPO_URL_FRONTEND }}:latest",
             "docker stop tienda-frontend || true",
             "docker rm tienda-frontend || true",
             "docker run -d --name tienda-frontend -p 80:80 ${{ secrets.ECR_REPO_URL_FRONTEND }}:latest"
           ]}' \
-<<<<<<< HEAD
-=======
           --region ${{ secrets.AWS_REGION }} \
->>>>>>> b93c108f2eb514edc5281b5c965d9d73fdc919a4
           --output text
