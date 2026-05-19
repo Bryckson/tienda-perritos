@@ -97,6 +97,6 @@ Para levantar el entorno en tu máquina local para desarrollo:
    docker-compose up -d --build
    
 3. **Acceder a la aplicación localmente:**
-   Frontend: http://localhost:80 o http://localhost:8080
-   Backend API: http://localhost:3001
-   Base de datos: Expuesta internamente en el puerto TCP 3306
+   - **Frontend:** http://localhost:80 o http://localhost:8080
+   - **Backend API:** http://localhost:3001
+   - **Base de datos:** Expuesta internamente en el puerto TCP 3306
