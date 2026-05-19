@@ -39,13 +39,10 @@ Gracias a esto, las instancias están preparadas desde el segundo cero para reci
 ---
 
 ## 🐳 2. Estrategia de Contenedorización (Docker)
-Todo el ecosistema está dockerizado, asegurando que los entornos de desarrollo y producción (AWS) sean idénticos y reproducibles.
+Todo el ecosistema de la aplicación fue empaquetado utilizando Docker. Esto nos permite separar las responsabilidades (Frontend, Backend y Base de Datos) y asegurar que el código se ejecute de la misma manera en un entorno de desarrollo local que en la infraestructura de AWS.
 
-- **Multi-stage Builds:** Los `Dockerfile` del Frontend y Backend utilizan compilación en múltiples etapas. Esto nos permite compilar el código y trasladar solo los artefactos finales a una imagen base ligera, reduciendo el tamaño, mejorando el rendimiento y limitando la superficie de ataque.
-- **Usuario Non-Root:** Los contenedores están configurados para ejecutarse sin privilegios de administrador por razones de seguridad.
-
-### Orquestación Local (`docker-compose.yml`)
-El archivo `docker-compose.yml` en la raíz permite levantar todo el stack de manera local. Define las redes internas para la comunicación segura entre contenedores y gestiona los puertos y variables de entorno centralizadamente.
+- **Imágenes Base:** Se utilizaron imágenes estándar como Node.js y Nginx para empaquetar las aplicaciones de forma rápida y funcional.
+- **Orquestación Local (`docker-compose.yml`):** El archivo en la raíz del proyecto permite levantar todo el stack de manera local con un solo comando. Este archivo gestiona la red interna, las variables de entorno y los volúmenes, facilitando las pruebas antes de subir cambios al repositorio.
 
 ---
 
